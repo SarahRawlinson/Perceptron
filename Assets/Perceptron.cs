@@ -33,7 +33,7 @@ public class Perceptron : MonoBehaviour
         return 0;
     }
     
-    double CalcOutput(int i1, int i2)
+    double CalcOutput(float i1, float i2)
     {
         double[] inp = new double[] {i1, i2};
         double dp = DotProductBias(Weights, inp);
@@ -98,9 +98,21 @@ public class Perceptron : MonoBehaviour
         DrawPoints();
         Train(200);
         sg.DrawRay((float)(-(Bias/Weights[1])/(Bias/Weights[0])), (float) (-Bias/Weights[1]), Color.red );
-        Debug.Log($"Test 0 0: {CalcOutput(0,0)}");
-        Debug.Log($"Test 0 1: {CalcOutput(0,1)}");
-        Debug.Log($"Test 1 0: {CalcOutput(1,0)}");
-        Debug.Log($"Test 1 1: {CalcOutput(1,1)}");
+        if (CalcOutput(0.3f, 0.9f) == 0)
+        {
+            sg.DrawPoint(0.3f, 0.9f, Color.gray);
+        }
+        else
+        {
+            sg.DrawPoint(0.3f, 0.9f, Color.yellow);
+        }
+        if (CalcOutput(0.8f, 0.1f) == 0)
+        {
+            sg.DrawPoint(0.8f, 0.1f, Color.gray);
+        }
+        else
+        {
+            sg.DrawPoint(0.8f, 0.1f, Color.yellow);
+        }
     }
 }
